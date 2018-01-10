@@ -1,6 +1,7 @@
 ##### php example 
 
-[github搜索技巧](github.md)
+[github搜索技巧](github.md)  
+[ThinkPHP](thinkphp.md)
 
 ###### 参考手册
 ```angular2html
