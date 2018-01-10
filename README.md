@@ -1,5 +1,7 @@
 ##### php example 
 
+[github搜索技巧](./GITHUB.md)
+
 ###### 参考手册
 ```angular2html
 1. Array
