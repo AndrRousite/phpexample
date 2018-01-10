@@ -9,15 +9,13 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace think\route\dispatch;
+return [
+    '__pattern__' => [
+        'name' => '\w+',
+    ],
+    '[hello]'     => [
+        ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
+        ':name' => ['index/hello', ['method' => 'post']],
+    ],
 
-use think\Response;
-use think\route\Dispatch;
-
-class Redirect extends Dispatch
-{
-    public function run()
-    {
-        return Response::create($this->dispatch, 'redirect')->code($this->code);
-    }
-}
+];
