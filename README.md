@@ -1,6 +1,6 @@
 ##### php example 
 
-[github搜索技巧](./GITHUB.md)
+[github搜索技巧](github.md)
 
 ###### 参考手册
 ```angular2html
