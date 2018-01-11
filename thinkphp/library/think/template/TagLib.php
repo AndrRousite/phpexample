@@ -138,7 +138,7 @@ class TagLib
                     $alias = $lib . $name != $node['name'] ? ($lib ? strstr($node['name'], $lib) : $node['name']) : '';
                     // 解析标签属性
                     $attrs  = $this->parseAttr($node['begin'][0], $name, $alias);
-                    $method = 'tag' . $name;
+                    $method = 'tags' . $name;
                     // 读取标签库中对应的标签内容 replace[0]用来替换标签头，replace[1]用来替换标签尾
                     $replace = explode($break, $this->$method($attrs, $break));
                     if (count($replace) > 1) {
@@ -176,7 +176,7 @@ class TagLib
                 $alias = $lib . $name != $matches[1] ? ($lib ? strstr($matches[1], $lib) : $matches[1]) : '';
                 // 解析标签属性
                 $attrs  = $this->parseAttr($matches[0], $name, $alias);
-                $method = 'tag' . $name;
+                $method = 'tags' . $name;
                 return $this->$method($attrs, '');
             }, $content);
         }
@@ -255,7 +255,7 @@ class TagLib
                 $must = explode(',', $tag['must']);
                 foreach ($must as $name) {
                     if (!isset($result[$name])) {
-                        throw new Exception('tag attr must:' . $name);
+                        throw new Exception('tags attr must:' . $name);
                     }
                 }
             }
@@ -272,7 +272,7 @@ class TagLib
                 $result['expression'] = rtrim($result['expression'], '/');
                 $result['expression'] = trim($result['expression']);
             } elseif (empty($this->tags[$name]) || !empty($this->tags[$name]['attr'])) {
-                throw new Exception('tag error:' . $name);
+                throw new Exception('tags error:' . $name);
             }
         }
         return $result;

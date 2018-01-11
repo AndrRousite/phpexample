@@ -1467,7 +1467,7 @@ class Query
         }
 
         if (false !== $key) {
-            $this->options['cache'] = ['key' => $key, 'expire' => $expire, 'tag' => $tag];
+            $this->options['cache'] = ['key' => $key, 'expire' => $expire, 'tags' => $tag];
         }
         return $this;
     }
@@ -2258,8 +2258,8 @@ class Query
             if (isset($key) && Cache::get($key)) {
                 // 删除缓存
                 Cache::rm($key);
-            } elseif (!empty($options['cache']['tag'])) {
-                Cache::clear($options['cache']['tag']);
+            } elseif (!empty($options['cache']['tags'])) {
+                Cache::clear($options['cache']['tags']);
             }
             // 执行操作
             $result = '' == $sql ? 0 : $this->execute($sql, $bind);
@@ -2411,8 +2411,8 @@ class Query
      */
     protected function cacheData($key, $data, $config = [])
     {
-        if (isset($config['tag'])) {
-            Cache::tag($config['tag'])->set($key, $data, $config['expire']);
+        if (isset($config['tags'])) {
+            Cache::tag($config['tags'])->set($key, $data, $config['expire']);
         } else {
             Cache::set($key, $data, $config['expire']);
         }
@@ -2723,8 +2723,8 @@ class Query
         if (isset($key) && Cache::get($key)) {
             // 删除缓存
             Cache::rm($key);
-        } elseif (!empty($options['cache']['tag'])) {
-            Cache::clear($options['cache']['tag']);
+        } elseif (!empty($options['cache']['tags'])) {
+            Cache::clear($options['cache']['tags']);
         }
         // 执行操作
         $result = $this->execute($sql, $bind);

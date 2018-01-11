@@ -123,7 +123,7 @@ class Sqlite extends Driver
         } else {
             $tag = '';
         }
-        $sql = 'REPLACE INTO ' . $this->options['table'] . ' (var, value, expire, tag) VALUES (\'' . $name . '\', \'' . $value . '\', \'' . $expire . '\', \'' . $tag . '\')';
+        $sql = 'REPLACE INTO ' . $this->options['table'] . ' (var, value, expire, tags) VALUES (\'' . $name . '\', \'' . $value . '\', \'' . $expire . '\', \'' . $tag . '\')';
         if (sqlite_query($this->handler, $sql)) {
             return true;
         }
@@ -188,7 +188,7 @@ class Sqlite extends Driver
     {
         if ($tag) {
             $name = sqlite_escape_string($tag);
-            $sql  = 'DELETE FROM ' . $this->options['table'] . ' WHERE tag=\'' . $name . '\'';
+            $sql  = 'DELETE FROM ' . $this->options['table'] . ' WHERE tags=\'' . $name . '\'';
             sqlite_query($this->handler, $sql);
             return true;
         }

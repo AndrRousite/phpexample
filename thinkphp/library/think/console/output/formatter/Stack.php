@@ -79,7 +79,7 @@ class Stack
             }
         }
 
-        throw new \InvalidArgumentException('Incorrectly nested style tag found.');
+        throw new \InvalidArgumentException('Incorrectly nested style tags found.');
     }
 
     /**

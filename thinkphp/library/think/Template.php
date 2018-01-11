@@ -433,7 +433,7 @@ class Template
         $content = preg_replace('/(<\?(?!php|=|$))/i', '<?php echo \'\\1\'; ?>' . "\n", $content);
         // PHP语法检查
         if ($this->config['tpl_deny_php'] && false !== strpos($content, '<?php')) {
-            throw new Exception('not allow php tag', 11600);
+            throw new Exception('not allow php tags', 11600);
         }
         return;
     }
@@ -627,10 +627,10 @@ class Template
                 if (empty($match['name'][0])) {
                     if (count($right) > 0) {
                         $tag                  = array_pop($right);
-                        $start                = $tag['offset'] + strlen($tag['tag']);
+                        $start                = $tag['offset'] + strlen($tag['tags']);
                         $length               = $match[0][1] - $start;
                         $result[$tag['name']] = [
-                            'begin'   => $tag['tag'],
+                            'begin'   => $tag['tags'],
                             'content' => substr($content, $start, $length),
                             'end'     => $match[0][0],
                             'parent'  => count($right) ? end($right)['name'] : '',
@@ -642,7 +642,7 @@ class Template
                     $right[] = [
                         'name'   => $match[2][0],
                         'offset' => $match[0][1],
-                        'tag'    => $match[0][0],
+                        'tags'    => $match[0][0],
                     ];
                 }
             }
@@ -729,7 +729,7 @@ class Template
      */
     private function parseTag(&$content)
     {
-        $regex = $this->getRegex('tag');
+        $regex = $this->getRegex('tags');
         if (preg_match_all($regex, $content, $matches, PREG_SET_ORDER)) {
             foreach ($matches as $match) {
                 $str  = stripslashes($match[1]);
@@ -1094,7 +1094,7 @@ class Template
     private function getRegex($tagName)
     {
         $regex = '';
-        if ('tag' == $tagName) {
+        if ('tags' == $tagName) {
             $begin = $this->config['tpl_begin'];
             $end   = $this->config['tpl_end'];
             if (strlen(ltrim($begin, '\\')) == 1 && strlen(ltrim($end, '\\')) == 1) {
