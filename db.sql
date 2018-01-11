@@ -111,3 +111,24 @@ INSERT INTO `tp_tags` (`id`, `tagname`) VALUES
   (1, '趣事'),
   (2, '奇闻2'),
   (4, '测试');
+
+
+-- tp_admin : 管理员表
+CREATE TABLE IF NOT EXISTS `tp_admin` (
+  `id`       MEDIUMINT(9) NOT NULL AUTO_INCREMENT
+  COMMENT '管理员用户表',
+  `username` VARCHAR(30)  NOT NULL
+  COMMENT '用户名',
+  `password` VARCHAR(128) NOT NULL
+  COMMENT '密码',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8
+  AUTO_INCREMENT = 21;
+
+-- 插入数据
+
+INSERT INTO `tp_admin` (`id`, `username`, `password`) VALUES
+  (1, 'admin', 'e10adc3949ba59abbe56e057f20f883e')
+
