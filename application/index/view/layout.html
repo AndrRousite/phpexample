@@ -1,0 +1,28 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>文章详情</title>
+    <meta name="keywords" content="刘枫的博客"/>
+    <meta name="description" content="刘枫的博客"/>
+    <meta name="mobile-agent" content="format=html5; url=http://m.zx.wed114.cn/shenghuo/20160920156214.html"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+    <link href="__PUBLIC__/style/lady.css" type="text/css" rel="stylesheet"/>
+    <script type='text/javascript' src='__PUBLIC__/style/ismobile.js'></script>
+    <script src='/jiehun/goto/my-65547.js' language='javascript'></script>
+</head>
+<body>
+{include file="common/header" /}
+
+<div class="position"><a href='{:url(' index/index')}'>主页</a> > <a
+        href="{:url('cate/index',array('cateid'=>$cates['id']))}">{$cates.catename}</a> >
+</div>
+
+<div class="overall">
+    {__CONTENT__}
+    {include file="common/right" /}
+</div>
+
+{include file="common/foot" /}
+
+</body>
+</html>

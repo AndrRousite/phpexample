@@ -33,4 +33,5 @@ class Admin extends Model
             return 1; // 用户不存在
         }
     }
+
 }

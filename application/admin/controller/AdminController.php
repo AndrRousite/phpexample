@@ -10,6 +10,7 @@ namespace app\admin\controller;
 
 
 use app\admin\model\Admin;
+use think\Loader;
 
 class AdminController extends Super
 {
@@ -22,5 +23,9 @@ class AdminController extends Super
         $list = $admin->paginate(3);
         $this->assign('list', $list);
         return $this->fetch();
+    }
+
+    public function test(){
+
     }
 }

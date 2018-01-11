@@ -123,3 +123,128 @@
 ```angular2html
 
 ```
+###### ThinkPHP学习
+```angular2html
+1. 基础：
+    - 安装：composer/git/download zip
+    - 目录机构：
+        ├─application           应用目录
+        │  ├─common             公共模块目录（可以更改）
+        │  ├─module_name        模块目录
+        │  │  ├─config.php      模块配置文件
+        │  │  ├─common.php      模块函数文件
+        │  │  ├─controller      控制器目录
+        │  │  ├─model           模型目录
+        │  │  ├─view            视图目录
+        │  │  └─ ...            更多类库目录
+        │  │
+        │  ├─command.php        命令行工具配置文件
+        │  ├─common.php         公共函数文件
+        │  ├─config.php         公共配置文件
+        │  ├─route.php          路由配置文件
+        │  ├─tags.php           应用行为扩展定义文件
+        │  └─database.php       数据库配置文件
+        │
+        ├─public                WEB目录（对外访问目录）
+        │  ├─index.php          入口文件
+        │  ├─router.php         快速测试文件
+        │  └─.htaccess          用于apache的重写
+        │
+        ├─thinkphp              框架系统目录
+        │  ├─lang               语言文件目录
+        │  ├─library            框架类库目录
+        │  │  ├─think           Think类库包目录
+        │  │  └─traits          系统Trait目录
+        │  │
+        │  ├─tpl                系统模板目录
+        │  ├─base.php           基础定义文件
+        │  ├─console.php        控制台入口文件
+        │  ├─convention.php     框架惯例配置文件
+        │  ├─helper.php         助手函数文件
+        │  ├─phpunit.xml        phpunit配置文件
+        │  └─start.php          框架入口文件
+        │
+        ├─extend                扩展类库目录
+        ├─runtime               应用的运行时目录（可写，可定制）
+        ├─vendor                第三方类库目录（Composer依赖库）
+        ├─build.php             自动生成定义文件（参考）
+        ├─composer.json         composer 定义文件
+        ├─LICENSE.txt           授权说明文件
+        ├─README.md             README 文件
+        ├─think                 命令行入口文件
+    3. 运行环境：
+        5.0.* ： php5.4+
+        5.1.* :  php5.6+
+        PDO extension ,mb_string extension,cURL extension
+    4. controller/model/view
+    5. config.php [配置文件说明](/application/config.php)
+2. 路由
+3. Request和Response: 
+4. Db类：
+    - 原生查询：Db::execute(sql)
+    - 构造器查询：Db::table(table)->...->...  链式操作
+    - 事务支持：Db::transaction(function(){
+        Db::table(table1);
+        Db::table(table2);
+        ...
+    })
+    - 构建器查询：Db::name('name')->...->... 
+        与构造器查询的区别：
+            - 去除数据表前缀tp_
+            - 支持视图查询
+            - 支持闭包查询
+            - 支持聚合查询
+            - 支持时间查询
+            - 支持字符串查询
+            - 支持分块查询：1万条记录分成100次处理，每次处理100条记录
+5. controller
+6. model:
+    - 基础操作
+    - 读取器和修改器：控制数据库字段的插入和读取
+    - Validate：输入和验证
+    - 关联：多表查询
+7. view
+    - 模板输出：fetch和display
+    - 公共模板和布局模板：
+        {include file="user/header" /}
+         {__CONTENT__}
+        {include file="user/footer" /}
+    - 标签定制
+    - 
+8. 调试和日志
+9. API开发
+10. 命令行工具
+11. 扩展
+    - 函数扩展：重写application或者各个module下的common.php文件，定义公共函数
+    - 类库扩展：第三方类库遵循PSR-4自动加载规范，则可放入extend目录，直接可以通过命名空间调用
+    - 驱动扩展：
+    - Composer扩展：类似java的maven和gradle
+12. 杂项
+    - Session
+    - Cookie
+    - 验证码：composer require topthink/think-captcha=1.*(2.*)
+    - 文件上传
+    - 图像处理：composer require topthink/think-image
+    - 单元测试：PHPUnit、Phake或者SimpleTest
+13. 助手函数
+    - import：导入所需的类库 同java的Import 本函数有缓存功能
+    - vendor：导入vendor目录下的第三方类库（非命名空间）
+    - model/controller/view
+    - db：
+    - input：获取输入数据 支持默认值和过滤
+    - request：获取当前的请求对象实例（单例）
+    - response: 创建响应对象实例
+    - session/cookie/cache/config
+    - dump/halt/trace/exception/debug
+    - json/xml/jsonp
+    - success/abort/error
+    - url：生成URL地址（支持路由反解）
+    - lang：获取语言变量值
+    - token：生成表单令牌（form表单项）
+        <form action="" >
+        <input type="text" name="name" />
+        {:token('__hash__')}
+        <input type="submit" />
+        </form>
+    
+```
