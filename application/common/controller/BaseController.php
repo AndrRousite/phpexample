@@ -1,6 +1,7 @@
 <?php
 
-namespace common;
+namespace app\common\controller;
+
 use think\Controller;
 
 /**

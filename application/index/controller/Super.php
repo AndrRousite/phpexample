@@ -9,9 +9,9 @@
 namespace app\index\controller;
 
 
-use think\Controller;
+use app\common\controller\BaseController;
 
-class Super extends Controller
+class Super extends BaseController
 {
     protected function _initialize()
     {
