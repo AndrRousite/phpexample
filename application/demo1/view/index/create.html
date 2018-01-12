@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>写留言</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/global.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/zone.css">
+</head>
+<body>
+<div class="con-wrap white container wrapper">
+    <form action="{:url('create')}" method="post">
+        <div class="editor-wrap">
+            <input name="title" class="title" type="text" placeholder="标题">
+            <textarea name="content" class="editor" placeholder="内容" style="padding: 10px;"></textarea>
+            <div class="btn-wrap">
+                <input type="submit" class="confirm" value="发表">
+                <input type="button" class="cancel" value="取消"
+                       onclick="location='{:url('index')}'">
+            </div>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>
