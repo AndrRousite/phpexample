@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>文件上传</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/library/webuploader/webuploader.css">
+
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.0.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/library/webuploader/webuploader.js"></script>
+</head>
+<body>
+<div id="uploader" class="wu-example">
+    <div id="progressbar" class="bar" style="display: none"></div>
+    <!--用来存放文件信息-->
+    <div id="thelist" class="uploader-list"></div>
+    <div class="btns">
+        <div id="picker">选择文件</div>
+    </div>
+</div>
+
+<script>
+    $("#progressbar").progressbar({
+        value: 0
+    });
+
+    // 初始化Web Uploader
+    var uploader = WebUploader.create({
+
+        // swf文件路径
+        swf: "__PUBLIC__/library/webuploader/Uploader.swf",
+
+        // 文件接收服务端。
+        server: "{:url('upload')}",
+
+        // 是否自动上传。
+        auto: true,
+        //设置文件上传域的name
+        fileVal: 'file',
+
+        //指定选择文件的按钮容器，不指定则不创建按钮
+        pick: {
+            id: "#picker",  //这里虽然写的是 id, 但是不是只支持 id, 还支持 class, 或者 dom 节点
+            innerHTML: '上传文件',
+            multiple: false  //是否开启多图上传
+        },
+
+        //指定接受哪些类型的文件
+//         accept: {
+//             title: 'Images',
+//             extensions: 'gif,jpg,jpeg,bmp,png',
+//             mimeTypes: 'image/*'
+//         },
+
+        //是否要分片上传
+        chunked: true,
+        //如果要分片，分多大一片(KB)
+        chunkSize: 100 * 1024 * 1024,
+
+        //验证文件总数量, 超出则不允许加入队列
+        fileNumLimit: 1,
+        //限制单文件大小(KB)
+        fileSingleSizeLimit: 5 * 1024 * 1024 * 1024
+
+    });
+
+    // 当有文件被添加进队列的时候
+    uploader.on('fileQueued', function (file) {
+
+        $list = $("#thelist");
+        $list.append('<div id="' + file.id + '" class="item">' +
+            '<h4 class="info">' + file.name + '</h4>' +
+            '<p class="state">等待上传...</p>' +
+            '</div>');
+        $("#progressbar").attr('style', 'display: block');
+
+        //上传进度
+        uploader.onUploadProgress = function (file, percentage) {
+            if (percentage != 1) {
+                a = percentage.toFixed(4);
+                b = a.slice(2, 4) + "." + a.slice(4, 6) + "%";
+                c = b.replace(/^0/, '');
+            } else {
+                c = '100%';
+            }
+
+            progressbar = $("#progressbar");
+            progressbar.progressbar("option", {
+                value: percentage * 100
+            });
+
+            var $li = $('#' + file.id),
+                $percent = $li.find('.progress .progress-bar');
+
+            $li.find('p.state').text('上传中' + c);
+        };
+    });
+
+    //上传错误
+    uploader.on('uploadError', function (file, reason) {
+        console.log(reason);
+        alert("上传出错");
+    });
+
+    //验证错误(文件类型, 大小......)
+    //Q_EXCEED_NUM_LIMIT  验证文件总数量, 超出则不允许加入队列
+    //Q_EXCEED_SIZE_LIMIT, 验证单个文件大小是否超出限制, 超出则不允许加入队列
+    // F_EXCEED_SIZE,验证文件总数量, 超出则不允许加入队列
+    // F_DUPLICATE去重， 根据文件名字、文件大小和最后修改时间来生成hash Key.
+    uploader.on('error', function (type) {
+        if (type == 'Q_EXCEED_NUM_LIMIT') {
+            alert("上传文件个数上限");
+        } else if (type == 'F_EXCEED_SIZE') {
+            alert("上传文件超出大小");
+        } else if (type == 'Q_TYPE_DENIED') {
+            alert("文件类型错误")
+        }
+    })
+
+    //当文件上传成功时触发
+    uploader.on('uploadSuccess', function (file) {
+
+        $('#' + file.id).find('p.state').text('已上传');
+        console.log(file);
+    });
+</script>
+</body>
+</html>

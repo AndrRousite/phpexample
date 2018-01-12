@@ -125,9 +125,8 @@
 ```
 
 ###### 小示例
-```html
-1. 留言板
-```
+- [留言板](phpexample.cn/demo1)
+- [上传文件](phpexample.cn/demo2)
 
 ###### ThinkPHP学习
 ```angular2html
