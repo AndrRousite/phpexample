@@ -127,6 +127,8 @@
 ###### 小示例
 - [留言板](phpexample.cn/demo1)
 - [上传文件](phpexample.cn/demo2)
+- [UEditor文本编辑器](phpexample.cn/demo3)
+- [自定义分页模板 AND 日历](phpexample.cn/demo4)
 
 ###### ThinkPHP学习
 ```angular2html

@@ -16,8 +16,8 @@ class IndexController extends BaseController
         $msg = "";
         $error = "";
 
-        $path = SITE_PATH . '/public/static/demo2' . '/upload/';
-        var_dump($path);
+        $path = SITE_PATH . '/public/static/demo2/upload/';
+        dump($path);
         if ($_FILES['file']['tmp_name']) {
             var_dump('HAHA');
             $ext = strtolower(pathinfo($_FILES['file']['name'])['extension']);
