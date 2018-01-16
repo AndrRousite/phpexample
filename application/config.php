@@ -232,7 +232,7 @@ return [
 
     //分页配置
     'paginate'               => [
-        'type'      => '\tool\TpPageHelper',
+        'type'      => 'bootstrap',
         'var_page'  => 'page',
         'list_rows' => 15,
     ],

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+</head>
+<body>
+<form action="login.php" method="post">
+    <span style="white-space:pre">    </span>用户名：<input type="text" name="username" id="username" size="10"/>
+    密码：<input type="password" name="password" id="password" size="10"/>
+    验证码：<input type="text" name="chknum" id="chknum" size="10"/>
+    <img id="imgcode" src="verifycode.php" alt="验证码" align="bottom" onClick="javascript:var refresh_code = function () {
+        document.getElementById('imgcode').src='verifycode.php?a='+Math.random();
+    };
+    refresh_code()"/>
+    <input name="submit" type="submit" value="登陆" style="FONT-SIZE: 9pt"/>
+
+</form>
+</body>
+</html>
