@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Study</title>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<p id="p">点我</p>
+<button id="button1">hide</button>
+<br>
+<button id="button2">toggle</button>
+<br>
+<input type="text" id="input">
+<script>
+    $(document).ready(function () {
+        console.log($('#p').html())
+        $('#button1').click(function () {
+            if ($('#p').is(':hidden')) {
+                $('#p').show()
+                $('#button1').text("hide")
+            } else {
+                $('#p').hide()
+                $('#button1').text('show')
+            }
+        })
+        $(window).keydown(function (event) {
+            console.log(event)
+        })
+        $('#input').focus(function () {
+            $(this).css("background-color", "#ccc")
+        })
+        $("#input").blur(function () {
+            $(this).css("background-color", "#fff")
+        })
+        $('button').hover(function () {
+            $(this).css("background-color", "#ccc")
+        }, function () {
+            $(this).css("background-color", "#fff")
+        })
+        $('#button2').click(function () {
+            $('#p').toggle()
+        })
+        $.ajax({
+            url: 'ajax.php',
+            type: 'GET',
+            dataType: 'JSON',
+            success: function (result) {
+                console.log(result)
+            }
+        })
+    })
+</script>
+</body>
+</html>
